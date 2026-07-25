@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fafaf9;
+  --foreground: #111111;
+  --muted: #e5e5e0;
+  --accent: var(--foreground);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #f5f5f4;
+    --muted: #262626;
+  }
+}
+
+/* Manual override from the theme toggle — wins over the system preference. */
+:root[data-theme="dark"] {
+  --background: #0a0a0a;
+  --foreground: #f5f5f4;
+  --muted: #262626;
+}
+
+:root[data-theme="light"] {
+  --background: #fafaf9;
+  --foreground: #111111;
+  --muted: #e5e5e0;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee-scroll 22s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Stop the marquee's movement but keep it visible — color/opacity transitions
+     elsewhere (e.g. the theme toggle) are left alone on purpose. */
+  .animate-marquee {
+    animation: none;
+  }
+}
