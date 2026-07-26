@@ -22,7 +22,11 @@ export default async function CaseStudy({
         ← Back to works
       </Link>
 
-      <div className="mt-6 mb-2 flex flex-wrap gap-2 font-mono text-xs text-foreground/50">
+      <div className="mt-6 flex aspect-video items-center justify-center rounded-2xl bg-muted/40 text-sm text-foreground/40">
+        Project image placeholder
+      </div>
+
+      <div className="mt-8 mb-2 flex flex-wrap gap-2 font-mono text-xs text-foreground/50">
         {project.tags.map((tag) => (
           <span key={tag}>{tag}</span>
         ))}
@@ -41,10 +45,6 @@ export default async function CaseStudy({
             {project.url.includes("github.com") ? "View on GitHub" : "Visit live site"} ↗
           </a>
         )}
-      </div>
-
-      <div className="mt-10 flex aspect-video items-center justify-center rounded-2xl bg-muted/40 text-sm text-foreground/40">
-        Project image placeholder
       </div>
 
       <section className="mt-12">

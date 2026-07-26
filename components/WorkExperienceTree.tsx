@@ -57,7 +57,10 @@ export default function WorkExperienceTree() {
         Work experience
       </h2>
       <div className="mt-6 grid gap-8 sm:grid-cols-[140px_1fr] sm:gap-10">
-        <GrowingTree progress={progress} className="w-28 sm:sticky sm:top-24" />
+        <GrowingTree
+          progress={progress}
+          className="fixed bottom-6 left-4 z-30 w-20 sm:static sm:bottom-auto sm:left-auto sm:z-auto sm:w-28 sm:sticky sm:top-24"
+        />
         <ul ref={listRef} className="space-y-10">
           {experiences.map((exp, i) => (
             <motion.li

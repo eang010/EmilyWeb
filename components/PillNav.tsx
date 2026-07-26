@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, useReducedMotion } from "motion/react";
+import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { Home, User, Briefcase, Sparkles } from "lucide-react";
 import ContactMenu from "@/components/ContactMenu";
 import { glass, press } from "@/lib/motion";
@@ -37,7 +37,7 @@ export default function PillNav() {
               <Link
                 href={item.href}
                 aria-label={item.label}
-                className={`relative z-10 flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium sm:px-4 ${press}`}
+                className={`relative z-10 flex items-center rounded-full px-3 py-2 text-sm font-medium sm:gap-2 sm:px-4 ${press}`}
                 style={{ color: active ? "var(--background)" : "var(--foreground)" }}
               >
                 {active && (
@@ -51,8 +51,22 @@ export default function PillNav() {
                     }
                   />
                 )}
-                <Icon size={16} />
+                <Icon size={16} className="shrink-0" />
                 <span className="hidden sm:inline">{item.label}</span>
+                <AnimatePresence initial={false}>
+                  {active && (
+                    <motion.span
+                      key="label"
+                      initial={{ width: 0, opacity: 0 }}
+                      animate={{ width: "auto", opacity: 1 }}
+                      exit={{ width: 0, opacity: 0 }}
+                      transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.2, ease: "easeOut" }}
+                      className="ml-2 overflow-hidden whitespace-nowrap sm:hidden"
+                    >
+                      {item.label}
+                    </motion.span>
+                  )}
+                </AnimatePresence>
               </Link>
             </li>
           );
