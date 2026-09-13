@@ -5,6 +5,8 @@
   --foreground: #111111;
   --muted: #e5e5e0;
   --accent: var(--foreground);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -60,10 +62,69 @@ body {
   animation-play-state: paused;
 }
 
+@keyframes works-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.works-index-row {
+  animation: works-in 280ms var(--ease-out) both;
+}
+
+.works-index-row:nth-child(1) {
+  animation-delay: 0ms;
+}
+.works-index-row:nth-child(2) {
+  animation-delay: 40ms;
+}
+.works-index-row:nth-child(3) {
+  animation-delay: 80ms;
+}
+.works-index-row:nth-child(4) {
+  animation-delay: 120ms;
+}
+.works-index-row:nth-child(5) {
+  animation-delay: 160ms;
+}
+.works-index-row:nth-child(6) {
+  animation-delay: 200ms;
+}
+
+.works-chips {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding-right: 1.75rem;
+  mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 2rem), transparent);
+}
+
+.works-chips::-webkit-scrollbar {
+  display: none;
+}
+
+.works-chip {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   /* Stop the marquee's movement but keep it visible — color/opacity transitions
      elsewhere (e.g. the theme toggle) are left alone on purpose. */
   .animate-marquee {
+    animation: none;
+  }
+
+  .works-index-row {
     animation: none;
   }
 }

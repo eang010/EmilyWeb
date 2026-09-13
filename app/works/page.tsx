@@ -1,36 +1,26 @@
-import ProjectCard from "@/components/ProjectCard";
+import WorksShowcase from "@/components/WorksShowcase";
 import { projects } from "@/data/projects";
 
 export default function Works() {
-  const featured = projects.filter((project) => project.featured);
-  const rest = projects.filter((project) => !project.featured);
-
   return (
     <div className="mx-auto max-w-5xl px-6 py-24 md:py-32">
       <h1 className="text-3xl font-medium tracking-tight sm:text-4xl">
         Works
       </h1>
       <p className="mt-4 max-w-xl text-foreground/70">
-        Placeholder — a short intro to how you pick and approach projects.
+        Cases I can stand behind — public-sector AI, an internal tool that
+        replaced a messy process, and products people actually used.
+      </p>
+      <p className="mt-3 font-mono text-xs text-foreground/40">
+        <span className="hidden lg:inline">
+          Hover a title to inspect · Click to open the case
+        </span>
+        <span className="lg:hidden">
+          Swipe the titles to browse · Read the case when you want the full story
+        </span>
       </p>
 
-      <h2 className="mt-14 font-mono text-xs uppercase tracking-widest text-foreground/50">
-        Spotlight
-      </h2>
-      <div className="mt-6 grid gap-6 sm:grid-cols-3">
-        {featured.map((project) => (
-          <ProjectCard key={project.slug} project={project} />
-        ))}
-      </div>
-
-      <h2 className="mt-16 font-mono text-xs uppercase tracking-widest text-foreground/50">
-        More work
-      </h2>
-      <div className="mt-6 grid gap-6 sm:grid-cols-2">
-        {rest.map((project) => (
-          <ProjectCard key={project.slug} project={project} />
-        ))}
-      </div>
+      <WorksShowcase projects={projects} />
     </div>
   );
 }
