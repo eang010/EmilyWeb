@@ -24,7 +24,7 @@ export default function PillNav() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <nav className="fixed inset-x-0 bottom-4 z-50 flex justify-center gap-2 px-3 sm:bottom-6 sm:gap-3 sm:px-4">
+    <nav className="fixed inset-x-0 bottom-[calc(1rem+env(safe-area-inset-bottom))] z-50 flex max-w-full justify-center gap-1.5 px-2 sm:bottom-[calc(1.5rem+env(safe-area-inset-bottom))] sm:gap-3 sm:px-4">
       <IconLink item={homeItem} active={isActive(pathname, homeItem.href)} />
 
       <ul className={`flex items-center gap-1 rounded-full p-1 ${glass}`}>

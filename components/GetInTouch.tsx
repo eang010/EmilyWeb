@@ -33,12 +33,12 @@ export default function GetInTouch({
   return (
     <motion.div
       layout
-      className={`inline-flex items-center overflow-hidden rounded-full text-sm font-medium ${styles}`}
+      className={`inline-flex max-w-full items-center overflow-hidden rounded-full text-sm font-medium ${styles}`}
       transition={transition}
     >
       <button
         onClick={() => setExpanded((v) => !v)}
-        className={`relative whitespace-nowrap px-5 py-2.5 ${press}`}
+        className={`relative min-w-0 max-w-full px-5 py-2.5 ${press}`}
       >
         <AnimatePresence mode="popLayout" initial={false}>
           <motion.span
@@ -47,7 +47,7 @@ export default function GetInTouch({
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -14, opacity: 0 }}
             transition={transition}
-            className={`block ${expanded ? "font-mono" : ""}`}
+            className={`block truncate ${expanded ? "font-mono" : "whitespace-nowrap"}`}
           >
             {expanded ? EMAIL : "Get in touch"}
           </motion.span>
