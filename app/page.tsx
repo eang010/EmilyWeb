@@ -5,8 +5,8 @@ import TrustedByMarquee from "@/components/TrustedByMarquee";
 
 export default function Home() {
   return (
-    <div>
-      <section className="mx-auto flex min-h-[100svh] max-w-5xl flex-col justify-center px-6 pt-[calc(3.75rem+env(safe-area-inset-top))] pb-[calc(5.75rem+env(safe-area-inset-bottom))] sm:min-h-[85svh] sm:pt-0 sm:pb-0 [@media(max-height:700px)]:justify-start [@media(max-height:700px)]:pt-[calc(3.25rem+env(safe-area-inset-top))] [@media(max-height:700px)]:pb-[calc(5.25rem+env(safe-area-inset-bottom))]">
+    <div className="-mb-[calc(7rem+env(safe-area-inset-bottom))] flex h-[100svh] max-h-[100svh] flex-col overflow-hidden px-6 pt-[calc(3.75rem+env(safe-area-inset-top))] pb-[calc(5.75rem+env(safe-area-inset-bottom))] [@media(max-height:700px)]:pt-[calc(3.25rem+env(safe-area-inset-top))] [@media(max-height:700px)]:pb-[calc(5.25rem+env(safe-area-inset-bottom))]">
+      <section className="mx-auto flex min-h-0 w-full max-w-5xl flex-1 flex-col justify-center [@media(max-height:700px)]:justify-start">
         <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5 [@media(max-height:700px)]:gap-2">
           <Avatar size={72} className="size-14 sm:size-[72px] [@media(max-height:700px)]:size-12" />
           <div>
@@ -31,7 +31,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="mx-auto max-w-5xl px-6 pb-16">
+      <footer className="mx-auto w-full max-w-5xl shrink-0">
         <TrustedByMarquee />
       </footer>
     </div>
