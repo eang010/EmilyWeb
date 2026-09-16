@@ -1,7 +1,13 @@
 import Image from "next/image";
 import meHeadshot from "@/components/images/me-hs.jpg";
 
-export default function Avatar({ size = 72 }: { size?: number }) {
+export default function Avatar({
+  size = 72,
+  className,
+}: {
+  size?: number;
+  className?: string;
+}) {
   return (
     <Image
       src={meHeadshot}
@@ -9,8 +15,12 @@ export default function Avatar({ size = 72 }: { size?: number }) {
       width={size}
       height={size}
       priority
-      className="shrink-0 rounded-full object-cover"
-      style={{ width: size, height: size }}
+      className={
+        className
+          ? `shrink-0 rounded-full object-cover ${className}`
+          : "shrink-0 rounded-full object-cover"
+      }
+      style={className ? undefined : { width: size, height: size }}
     />
   );
 }

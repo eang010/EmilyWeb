@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import PillNav from "@/components/PillNav";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -18,6 +18,10 @@ export const metadata: Metadata = {
   title: "Emily Ang — Digital Business Analyst",
   description:
     "Digital business analyst — case studies, services, and how to get in touch.",
+};
+
+export const viewport: Viewport = {
+  viewportFit: "cover",
 };
 
 const themeInitScript = `
@@ -42,7 +46,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
       >
-        <main className="min-h-screen pb-28">{children}</main>
+        <main className="min-h-svh pb-[calc(7rem+env(safe-area-inset-bottom))]">
+          {children}
+        </main>
         <ThemeToggle />
         <PillNav />
       </body>
