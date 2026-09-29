@@ -28,6 +28,28 @@ body {
   outline-offset: 3px;
 }
 
+.contact-mark {
+  display: flex;
+  height: 2rem;
+  width: 2rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  color: var(--foreground);
+  cursor: pointer;
+}
+
+.contact-glyph {
+  display: flex;
+  transform: scale(1);
+  transition: transform 0.32s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.contact-mark:hover .contact-glyph,
+.contact-mark:focus-visible .contact-glyph {
+  transform: scale(1.45);
+}
+
 .email-slot {
   position: relative;
   display: flex;
@@ -117,7 +139,8 @@ body {
   }
 
   .email-reveal,
-  .email-reveal-text {
+  .email-reveal-text,
+  .contact-glyph {
     transition: none;
   }
 }
