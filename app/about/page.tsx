@@ -83,7 +83,7 @@ export default function About() {
           </p>
           <div className="mt-10 space-y-5 text-[15px] leading-[1.65] text-pretty text-foreground">
             <p className="scroll-reveal">
-              Most of the time, that turns into me making something, whether it&apos;s a quick automation or a whole digital experience that takes a bit of hassle out of someone&apos;s day, especially my own.
+              Most of the time, that turns into me building something, whether it&apos;s a quick automation or a whole digital experience that takes a bit of hassle out of someone&apos;s day, especially my own.
             </p>
             <p className="scroll-reveal">
               Sometimes I&apos;ll just watch how someone works and wonder why it&apos;s done that way, and whether it has to be. Once I spot the friction, I want to get rid of it.
