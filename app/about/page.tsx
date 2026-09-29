@@ -5,6 +5,24 @@ import { experiences } from "@/data/experience";
 
 const tools = ["Figma", "Notion", "Jira", "SQL", "Miro", "Confluence"];
 
+const education = [
+  {
+    credential: "Bachelor of Engineering (BE), Electrical and Electronics Engineering",
+    school: "Nanyang Technological University Singapore",
+    period: "2016 — 2019",
+  },
+  {
+    credential: "Specialist Diploma, Counselling Psychology",
+    school: "ACC Institute of Human Services",
+    period: "2020 — 2021",
+  },
+  {
+    credential: "Diploma, Audio and Visual Technology",
+    school: "Ngee Ann Polytechnic",
+    period: "2013 — 2016",
+  },
+];
+
 export default function About() {
   return (
     <div className="max-w-3xl">
@@ -67,13 +85,14 @@ export default function About() {
 
       <h2 className="mt-16 text-[15px] font-medium">Education</h2>
       <ul className="mt-6">
-        {[1, 2].map((i) => (
-          <li key={i} className="border-t border-hairline py-6">
-            <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-              <p className="text-[15px]">
-                Placeholder Degree {i}<span className="text-quiet">, Placeholder Institution {i}</span>
+        {education.map((item) => (
+          <li key={item.school} className="border-t border-hairline py-6">
+            <div className="flex items-baseline justify-between gap-x-6">
+              <p className="min-w-0 text-[15px]">
+                {item.credential}
+                <span className="mt-1 block text-quiet">{item.school}</span>
               </p>
-              <p className="text-[13px] text-quiet">20XX</p>
+              <p className="shrink-0 text-[13px] text-quiet">{item.period}</p>
             </div>
           </li>
         ))}
