@@ -7,7 +7,7 @@ import QrModal from "@/components/QrModal";
 import { glass, press, easeOut } from "@/lib/motion";
 
 // Placeholder — replace with the real LinkedIn profile URL.
-const LINKEDIN_URL = "https://www.linkedin.com/in/emily-ang";
+const LINKEDIN_URL = "https://www.linkedin.com/in/emilyang20/";
 
 // lucide-react no longer ships brand/social icons, hence the inline glyph.
 function LinkedinIcon({ size = 16 }: { size?: number }) {

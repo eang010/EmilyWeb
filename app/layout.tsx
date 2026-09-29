@@ -41,6 +41,10 @@ export default function RootLayout({
               function mark() {
                 button.setAttribute("data-copied", "true");
                 button.setAttribute("aria-label", "Email copied");
+                var emailToggle = document.getElementById("email-toggle");
+                var contactToggle = document.getElementById("mobile-contact-toggle");
+                if (emailToggle) emailToggle.checked = false;
+                if (contactToggle) contactToggle.checked = false;
                 window.setTimeout(function () {
                   button.removeAttribute("data-copied");
                   button.setAttribute("aria-label", "Copy email address");
@@ -67,7 +71,7 @@ export default function RootLayout({
           })();
         `}</Script>
         <SiteChrome />
-        <main className="px-6 pt-2 pb-44 lg:pt-9 lg:pr-9 lg:pb-16 lg:pl-[calc(15rem+2.25rem)]">
+        <main className="px-6 pt-2 pb-28 lg:pt-9 lg:pr-9 lg:pb-16 lg:pl-[calc(15rem+2.25rem)]">
           {children}
         </main>
       </body>

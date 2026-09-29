@@ -133,6 +133,43 @@ body {
   display: flex;
 }
 
+.mobile-contact {
+  display: flex;
+  align-items: center;
+}
+
+.mobile-contact-reveal {
+  display: grid;
+  grid-template-columns: 0fr;
+  transition: grid-template-columns 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.mobile-contact:has(.email-toggle:checked) .mobile-contact-reveal {
+  grid-template-columns: 1fr;
+}
+
+.mobile-contact-clip {
+  overflow: hidden;
+  min-width: 0;
+}
+
+.mobile-contact-row {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.mobile-email {
+  border: 0;
+  background: none;
+  padding: 0 0.75rem 0 0.15rem;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1;
+  color: var(--foreground);
+  cursor: pointer;
+}
+
 .email-slot:has(.email-toggle:checked) .email-reveal-text {
   visibility: visible;
   pointer-events: auto;
@@ -147,7 +184,8 @@ body {
 
   .email-reveal,
   .email-reveal-text,
-  .contact-glyph {
+  .contact-glyph,
+  .mobile-contact-reveal {
     transition: none;
   }
 }

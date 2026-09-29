@@ -7,7 +7,7 @@ import Logo from "@/components/Logo";
 import PillNav from "@/components/PillNav";
 
 const EMAIL = "3mily.ang@gmail.com";
-const LINKEDIN_URL = "https://www.linkedin.com/in/emily-ang";
+const LINKEDIN_URL = "https://www.linkedin.com/in/emilyang20/";
 
 const links = [
   { href: "/", label: "Projects" },
@@ -104,7 +104,7 @@ function EmailMark() {
 
 function ContactMarks() {
   return (
-    <div className="fixed bottom-[5.5rem] left-6 z-40 flex items-center gap-1 bg-paper lg:bottom-8 lg:left-10">
+    <div className="fixed bottom-8 left-10 z-40 hidden items-center gap-1 bg-paper lg:flex">
       <a
         href={LINKEDIN_URL}
         target="_blank"
