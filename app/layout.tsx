@@ -32,19 +32,27 @@ export default function RootLayout({
           (function () {
             if (window.__copyEmailBound) return;
             window.__copyEmailBound = true;
+            function dismissContact(rootSelector, toggleId) {
+              var toggle = document.getElementById(toggleId);
+              var root = document.querySelector(rootSelector);
+              var open = toggle && toggle.checked;
+              var copied = root && root.getAttribute("data-copied") === "true";
+              if (!open && !copied) return;
+              if (toggle) toggle.checked = false;
+              if (!root) return;
+              window.clearTimeout(root.__copiedTimer);
+              root.removeAttribute("data-copied");
+              var note = root.querySelector(".copied-note-text");
+              if (note) note.textContent = "";
+              var copyButton = root.querySelector("[data-copy-email]");
+              if (copyButton) copyButton.setAttribute("aria-label", "Copy email address");
+            }
             document.addEventListener("click", function (event) {
               var node = event.target;
+              if (node && node.nodeType === 3) node = node.parentElement;
               if (!node || !node.closest) return;
-              if (node.closest("[data-close-contact]")) {
-                var contactToggle = document.getElementById("mobile-contact-toggle");
-                if (contactToggle) contactToggle.checked = false;
-                var mobile = document.querySelector(".mobile-contact");
-                if (mobile) {
-                  mobile.removeAttribute("data-copied");
-                  var copied = mobile.querySelector(".copied-note-text");
-                  if (copied) copied.textContent = "";
-                }
-              }
+              if (!node.closest(".mobile-contact")) dismissContact(".mobile-contact", "mobile-contact-toggle");
+              if (!node.closest(".email-slot")) dismissContact(".email-slot", "email-toggle");
               var button = node.closest("[data-copy-email]");
               if (!button) return;
               var email = button.getAttribute("data-copy-email");

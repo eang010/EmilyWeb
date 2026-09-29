@@ -1,33 +1,49 @@
-// Descending order — most recent role first. NCS's combined
-// "Application Consultant/Software Engineer" title is split into its two
-// halves to fill out 4 entries; the Jan 2021 split date is an estimate.
-export const experiences = [
+// One entry per company, most recent first. Dates follow LinkedIn:
+// GovTech as a single Digital Business Analyst role from Feb 2023, and
+// NCS as Application Consultant across Jul 2019 – Jan 2023.
+export type ExperiencePart = {
+  text: string;
+  accent?: boolean;
+};
+
+export const experiences: {
+  role: string;
+  company: string;
+  period: string;
+  description: ExperiencePart[];
+}[] = [
   {
-    role: "Digital Business Analyst (II)",
+    role: "Digital Business Analyst",
     company: "GovTech",
-    period: "Apr 2025 — Present",
-    description:
-      "Bridging business needs with technical solutions, driving digital transformation through user-centric design and low-code development. Own end-to-end project lifecycles — stakeholder engagement, requirements gathering, prototyping, testing, and implementation. Guide stakeholders through user and service journey mapping to surface pain points and evaluate product-market fit.",
-  },
-  {
-    role: "Digital Business Analyst (I)",
-    company: "GovTech",
-    period: "Feb 2023 — Apr 2025",
-    description:
-      "Supported the Marketing Group across high-impact, front-facing projects including VisitSingapore.com, the Singapore Tourism Awards site, and the Data Management Platform — including the GCC 2.0 cloud migration and the VS.com 3.0 revamp and launch. Led a vendor audit with zero findings, and managed vendor compliance and cross-stakeholder alignment throughout delivery.",
+    period: "Feb 2023 — Present",
+    description: [
+      { text: "I bridge business needs with technical solutions through " },
+      { text: "user-centric design and low-code development", accent: true },
+      {
+        text: ", and I take work from stakeholder engagement and requirements through prototyping, testing, and implementation. Journey mapping is how I get stakeholders looking at the same workflow, so the pain points and the options are visible before we commit. With the Marketing Group, that has included VisitSingapore.com, the Singapore Tourism Awards site, and the Data Management Platform — the GCC 2.0 migration from STB Cloud, the ",
+      },
+      { text: "VS.com 3.0 revamp and launch", accent: true },
+      { text: ", and a vendor audit that closed with " },
+      { text: "zero findings", accent: true },
+      { text: "." },
+    ],
   },
   {
     role: "Application Consultant",
     company: "NCS Group",
-    period: "Jan 2021 — Jan 2023",
-    description:
-      "Led cross-functional discussions to analyse business needs, assess impact and cost, and prioritise system enhancements for bespoke client systems. Used visual aids and mock-ups to bridge communication between clients and internal teams, while managing project timelines and facilitating training, UAT, and briefings.",
-  },
-  {
-    role: "Software Engineer",
-    company: "NCS Group",
-    period: "Jul 2019 — Jan 2021",
-    description:
-      "Built full-stack features (ASP.NET C#, HTML, JavaScript, SQL) for bespoke enterprise systems, including on-premise server coordination and deployment. Reviewed code and mentored junior developers to support consistent delivery quality.",
+    period: "Jul 2019 — Jan 2023",
+    description: [
+      { text: "I gathered requirements and weighed " },
+      { text: "impact and cost", accent: true },
+      { text: " before a change went ahead, then ran " },
+      { text: "UAT sessions", accent: true },
+      {
+        text: " and IT briefings with the stakeholders who would use it. I translated those needs into technical requirements for the development team, wrote the operational guides, and spent time in the business so the proposal matched how they actually worked. I also developed and shipped fixes in ",
+      },
+      { text: "C#, ASP.NET WebForms, and MSSQL", accent: true },
+      {
+        text: ", and coordinated the backend around them — server set-up, batch job onboarding, enhancement and incident deployments, and downtime checks.",
+      },
+    ],
   },
 ];

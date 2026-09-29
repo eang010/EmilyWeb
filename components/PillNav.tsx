@@ -37,7 +37,6 @@ export default function PillNav() {
             <li key={link.href} className="relative">
               <Link
                 href={link.href}
-                data-close-contact=""
                 aria-label={link.label}
                 aria-current={active ? "page" : undefined}
                 className="relative z-10 flex items-center rounded-full px-3 py-2 text-sm"

@@ -1,3 +1,6 @@
+import Image from "next/image";
+import gtLogo from "@/components/images/GTlogo.gif";
+import ncsLogo from "@/components/images/ncs_logo.avif";
 import { experiences } from "@/data/experience";
 
 const tools = ["Figma", "Notion", "Jira", "SQL", "Miro", "Confluence"];
@@ -31,6 +34,10 @@ export default function About() {
       </div>
 
       <h2 className="mt-16 text-[15px] font-medium">Experience</h2>
+      <div className="mt-6 flex items-center gap-10">
+        <Image src={gtLogo} alt="GovTech" className="h-11 w-auto" />
+        <Image src={ncsLogo} alt="NCS" className="h-6 w-auto" />
+      </div>
       <ul className="mt-6">
         {experiences.map((exp) => (
           <li key={exp.role} className="border-t border-hairline py-6">
@@ -41,7 +48,15 @@ export default function About() {
               <p className="text-[13px] text-quiet">{exp.period}</p>
             </div>
             <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-foreground">
-              {exp.description}
+              {exp.description.map((part) =>
+                part.accent ? (
+                  <span key={part.text} className="font-medium">
+                    {part.text}
+                  </span>
+                ) : (
+                  part.text
+                ),
+              )}
             </p>
           </li>
         ))}

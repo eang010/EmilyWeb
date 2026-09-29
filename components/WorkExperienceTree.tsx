@@ -45,7 +45,7 @@ export default function WorkExperienceTree() {
                 <p className="font-mono text-xs text-foreground/40">{exp.period}</p>
               </div>
               <p className="mt-3 max-w-xl text-sm text-foreground/60">
-                {exp.description}
+                {exp.description.map((part) => part.text).join("")}
               </p>
             </motion.li>
           ))}
