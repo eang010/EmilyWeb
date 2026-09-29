@@ -251,17 +251,6 @@ body {
   }
 }
 
-.skeleton {
-  background: #f3f3f3;
-  animation: skeleton-pulse 1.4s ease-in-out infinite;
-}
-
-@keyframes skeleton-pulse {
-  50% {
-    opacity: 0.45;
-  }
-}
-
 @keyframes show-in-place {
   from {
     opacity: 0;
@@ -314,7 +303,6 @@ body {
     mask-image: none;
   }
 
-  .skeleton,
   .scroll-reveal,
   .scroll-reveal-js {
     animation: none;

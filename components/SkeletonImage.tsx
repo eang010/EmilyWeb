@@ -6,8 +6,7 @@ type Props = ImageProps & {
 
 export default function SkeletonImage({ className, wrapperClassName, alt, ...props }: Props) {
   return (
-    <span className={`skeleton-host relative inline-block ${wrapperClassName ?? ""}`}>
-      <span aria-hidden="true" className="skeleton pointer-events-none absolute inset-0 rounded-[inherit]" />
+    <span className={`relative inline-block ${wrapperClassName ?? ""}`}>
       <Image {...props} alt={alt} className={className} />
     </span>
   );

@@ -48,12 +48,10 @@ export default function ToolsMarquee() {
 
   return (
     <div
-      className="tool-marquee skeleton-host"
+      className="tool-marquee"
       tabIndex={0}
-      aria-busy="true"
       aria-label="Tools. The row scrolls on its own. Focus or hover to pause it."
     >
-      <div className="skeleton absolute inset-0 z-10" aria-hidden="true" />
       <p className="sr-only">{tools.map((tool) => tool.name).join(", ")}</p>
       <div className="tool-track" aria-hidden="true">
         {rows.map((row, index) => (

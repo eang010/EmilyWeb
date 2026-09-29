@@ -150,25 +150,6 @@ export default function About() {
       <script
         dangerouslySetInnerHTML={{
           __html: `(function () {
-          function settle(root) {
-            var images = root.querySelectorAll("img");
-            var left = images.length;
-            function finish() {
-              left -= 1;
-              if (left > 0) return;
-              root.querySelectorAll(".skeleton").forEach(function (node) { node.remove(); });
-              root.removeAttribute("aria-busy");
-            }
-            if (!left) return;
-            images.forEach(function (img) {
-              if (img.complete) finish();
-              else {
-                img.addEventListener("load", finish, { once: true });
-                img.addEventListener("error", finish, { once: true });
-              }
-            });
-          }
-          document.querySelectorAll(".about-page .skeleton-host").forEach(settle);
           if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
           if (CSS.supports("animation-timeline", "view()")) return;
           var observer = new IntersectionObserver(function (entries) {
