@@ -25,7 +25,7 @@ const education = [
 
 export default function About() {
   return (
-    <div className="py-12 pl-6 pr-20 sm:pl-10 sm:pr-32 lg:py-16 lg:pl-16 lg:pr-48">
+    <div className="py-12 px-6 sm:pl-10 sm:pr-32 lg:py-16 lg:pl-16 lg:pr-48">
       <h1 className="text-[15px] font-medium">About</h1>
       <div className="mt-10 grid gap-10 @2xl:grid-cols-[minmax(0,48rem)_auto] @2xl:items-start @2xl:justify-between @2xl:gap-x-16">
         <Image

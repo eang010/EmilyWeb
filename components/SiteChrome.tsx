@@ -22,8 +22,8 @@ function isActive(pathname: string, href: string) {
 function LinkedinIcon() {
   return (
     <svg
-      width="16"
-      height="16"
+      width="22"
+      height="22"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -72,7 +72,7 @@ function EmailMark() {
       <input id="email-toggle" type="checkbox" className="email-toggle" />
       <label htmlFor="email-toggle" className="contact-mark">
         <span className="contact-glyph">
-          <Mail size={16} strokeWidth={1.75} />
+          <Mail size={22} strokeWidth={1.75} />
         </span>
         <span className="sr-only">Show email address</span>
       </label>
