@@ -28,8 +28,96 @@ body {
   outline-offset: 3px;
 }
 
+.email-slot {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.email-toggle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.email-reveal {
+  display: grid;
+  grid-template-columns: 0fr;
+  transition: grid-template-columns 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.email-slot:has(.email-toggle:checked) .email-reveal {
+  grid-template-columns: 1fr;
+}
+
+.email-reveal-clip {
+  overflow: hidden;
+  min-width: 0;
+}
+
+.email-reveal-text {
+  display: flex;
+  align-items: center;
+  padding-left: 0.35rem;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-0.75rem);
+  opacity: 0;
+  transition:
+    transform 0.45s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.28s ease,
+    visibility 0.45s;
+}
+
+.email-address {
+  font-size: 13px;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--foreground);
+}
+
+.email-copy {
+  display: flex;
+  height: 2rem;
+  width: 2rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  color: var(--foreground);
+}
+
+.copied-icon {
+  display: none;
+}
+
+.email-copy[data-copied="true"] .copy-icon {
+  display: none;
+}
+
+.email-copy[data-copied="true"] .copied-icon {
+  display: flex;
+}
+
+.email-slot:has(.email-toggle:checked) .email-reveal-text {
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(0);
+  opacity: 1;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .email-reveal,
+  .email-reveal-text {
+    transition: none;
   }
 }

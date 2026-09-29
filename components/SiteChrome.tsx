@@ -3,10 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Mail } from "lucide-react";
-import { motion, useReducedMotion } from "motion/react";
+import { Check, Copy, Mail } from "lucide-react";
 import Logo from "@/components/Logo";
-import { easeOut } from "@/lib/motion";
 
 const EMAIL = "3mily.ang@gmail.com";
 const LINKEDIN_URL = "https://www.linkedin.com/in/emily-ang";
@@ -59,52 +57,35 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
 }
 
 function EmailMark() {
-  const [hovered, setHovered] = useState(false);
-  const [pinned, setPinned] = useState(false);
-  const open = hovered || pinned;
-  const reduce = useReducedMotion();
-  const transition = reduce ? { duration: 0 } : { duration: 0.42, ease: easeOut };
-
   return (
-    <div
-      className="flex items-center"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onFocus={() => setHovered(true)}
-      onBlur={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-          setHovered(false);
-        }
-      }}
-    >
-      <button
-        type="button"
-        aria-expanded={open}
-        aria-label={open ? "Hide email address" : "Show email address"}
-        onClick={() => setPinned((value) => !value)}
-        className="flex h-8 w-8 items-center justify-center text-foreground"
-      >
+    <div className="email-slot">
+      <input id="email-toggle" type="checkbox" className="email-toggle" />
+      <label htmlFor="email-toggle" className="flex h-8 w-8 cursor-pointer items-center justify-center text-foreground">
         <Mail size={16} strokeWidth={1.75} />
-      </button>
-      <motion.div
-        initial={false}
-        animate={{ width: open ? "auto" : 0, opacity: open ? 1 : 0 }}
-        transition={transition}
-        className="overflow-hidden"
-        aria-hidden={!open}
-      >
-        <motion.a
-          href={`mailto:${EMAIL}`}
-          tabIndex={open ? 0 : -1}
-          animate={{ x: open ? 0 : -14 }}
-          transition={transition}
-          className={`inline-block pr-2 pl-1.5 text-[13px] whitespace-nowrap text-foreground ${
-            open ? "" : "pointer-events-none"
-          }`}
-        >
-          {EMAIL}
-        </motion.a>
-      </motion.div>
+        <span className="sr-only">Show email address</span>
+      </label>
+      <div id="email-reveal" className="email-reveal">
+        <div className="email-reveal-clip">
+          <div className="email-reveal-text">
+            <a href={`mailto:${EMAIL}`} className="email-address">
+              {EMAIL}
+            </a>
+            <button
+              type="button"
+              data-copy-email={EMAIL}
+              aria-label="Copy email address"
+              className="email-copy"
+            >
+              <span className="copy-icon" aria-hidden="true">
+                <Copy size={14} strokeWidth={1.75} />
+              </span>
+              <span className="copied-icon" aria-hidden="true">
+                <Check size={14} strokeWidth={1.75} />
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

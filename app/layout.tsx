@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Sans } from "next/font/google";
+import Script from "next/script";
 import SiteChrome from "@/components/SiteChrome";
 import "./globals.css";
 
@@ -27,6 +28,44 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${plex.variable} h-full`}>
       <body className="min-h-full bg-paper font-sans text-foreground antialiased">
+        <Script id="copy-email" strategy="beforeInteractive">{`
+          (function () {
+            if (window.__copyEmailBound) return;
+            window.__copyEmailBound = true;
+            document.addEventListener("click", function (event) {
+              var node = event.target;
+              if (!node || !node.closest) return;
+              var button = node.closest("[data-copy-email]");
+              if (!button) return;
+              var email = button.getAttribute("data-copy-email");
+              function mark() {
+                button.setAttribute("data-copied", "true");
+                button.setAttribute("aria-label", "Email copied");
+                window.setTimeout(function () {
+                  button.removeAttribute("data-copied");
+                  button.setAttribute("aria-label", "Copy email address");
+                }, 1500);
+              }
+              function fallback() {
+                var area = document.createElement("textarea");
+                area.value = email;
+                area.setAttribute("readonly", "");
+                area.style.position = "fixed";
+                area.style.left = "-9999px";
+                document.body.appendChild(area);
+                area.select();
+                try { document.execCommand("copy"); } catch (e) {}
+                area.remove();
+                mark();
+              }
+              if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(email).then(mark).catch(fallback);
+              } else {
+                fallback();
+              }
+            });
+          })();
+        `}</Script>
         <SiteChrome />
         <main className="px-6 pt-2 pb-28 lg:pt-9 lg:pr-9 lg:pb-16 lg:pl-[calc(15rem+2.25rem)]">
           {children}
