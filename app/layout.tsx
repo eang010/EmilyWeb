@@ -97,7 +97,7 @@ export default function RootLayout({
           })();
         `}</Script>
         <SiteChrome />
-        <main className="px-6 pt-2 pb-28 lg:pt-9 lg:pr-9 lg:pb-16 lg:pl-[calc(15rem+2.25rem)]">
+        <main className="@container px-6 pt-2 pb-28 lg:pt-9 lg:pr-9 lg:pb-16 lg:pl-[calc(15rem+2.25rem)]">
           {children}
         </main>
       </body>

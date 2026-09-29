@@ -24,9 +24,9 @@ const education = [
 
 export default function About() {
   return (
-    <div className="max-w-3xl">
+    <div className="w-full max-w-7xl">
       <h1 className="text-[15px] font-medium">About</h1>
-      <div className="mt-10 max-w-xl">
+      <div className="mt-10 max-w-3xl">
         <p className="text-[15px] leading-relaxed text-foreground">
           I&apos;m drawn to problems that make me think
         </p>
@@ -36,7 +36,7 @@ export default function About() {
           <br />
           a better way.”
         </p>
-        <div className="mt-10 max-w-[38rem] space-y-5 text-[15px] leading-[1.65] text-pretty text-foreground">
+        <div className="mt-10 space-y-5 text-[15px] leading-[1.65] text-pretty text-foreground">
           <p>
             Most of the time, that turns into me making something, whether it&apos;s a quick automation or a whole digital experience that takes a bit of hassle out of someone&apos;s day or especially my own.
           </p>
@@ -67,7 +67,7 @@ export default function About() {
               </p>
               <p className="text-[13px] text-quiet">{exp.period}</p>
             </div>
-            <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-foreground">
+            <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-foreground">
               {exp.description.map((part) =>
                 part.accent ? (
                   <span key={part.text} className="font-medium">

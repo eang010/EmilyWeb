@@ -212,7 +212,7 @@ body {
 .tool-marquee {
   margin-top: 1.25rem;
   overflow: hidden;
-  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, var(--foreground) 8%, var(--foreground) 92%, transparent);
 }
 
 .tool-track {
