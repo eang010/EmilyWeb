@@ -1,9 +1,8 @@
 import Image from "next/image";
 import gtLogo from "@/components/images/GTlogo.gif";
 import ncsLogo from "@/components/images/ncs_logo.avif";
+import ToolsMarquee from "@/components/ToolsMarquee";
 import { experiences } from "@/data/experience";
-
-const tools = ["Figma", "Notion", "Jira", "SQL", "Miro", "Confluence"];
 
 const education = [
   {
@@ -45,6 +44,9 @@ export default function About() {
             Sometimes I&apos;ll just watch how someone works and wonder why it&apos;s done that way, and whether it has to be. Once I spot the friction, I want to get rid of it.
           </p>
           <p>
+            Shoutout to AI for speeding all of this up. It's part of how I plan, test and build, and it helps me turn ideas into something real in half the time.
+          </p>
+          <p>
             I think technology should make life easier,
             <span className="mt-2 block font-medium">and I'm happiest when something I've made gives someone a bit of their time back.</span>
           </p>
@@ -81,7 +83,7 @@ export default function About() {
       </ul>
 
       <h2 className="mt-16 text-[15px] font-medium">Tools</h2>
-      <p className="mt-4 text-[15px] leading-relaxed">{tools.join(", ")}</p>
+      <ToolsMarquee />
 
       <h2 className="mt-16 text-[15px] font-medium">Education</h2>
       <ul className="mt-6">

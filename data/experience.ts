@@ -20,12 +20,8 @@ export const experiences: {
       { text: "I bridge business needs with technical solutions through " },
       { text: "user-centric design and low-code development", accent: true },
       {
-        text: ", and I take work from stakeholder engagement and requirements through prototyping, testing, and implementation. Journey mapping is how I get stakeholders looking at the same workflow, so the pain points and the options are visible before we commit. With the Marketing Group, that has included VisitSingapore.com, the Singapore Tourism Awards site, and the Data Management Platform — the GCC 2.0 migration from STB Cloud, the ",
+        text: ", and I take work from stakeholder engagement and requirements through prototyping, testing, and implementation.",
       },
-      { text: "VS.com 3.0 revamp and launch", accent: true },
-      { text: ", and a vendor audit that closed with " },
-      { text: "zero findings", accent: true },
-      { text: "." },
     ],
   },
   {

@@ -209,6 +209,47 @@ body {
   opacity: 1;
 }
 
+.tool-marquee {
+  margin-top: 1.25rem;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.tool-track {
+  display: flex;
+  width: max-content;
+  animation: tool-scroll 90s linear infinite;
+}
+
+.tool-marquee:hover .tool-track,
+.tool-marquee:focus-within .tool-track {
+  animation-play-state: paused;
+}
+
+.tool-row {
+  display: flex;
+  align-items: center;
+  gap: 2.75rem;
+  padding-right: 2.75rem;
+}
+
+.tool-logo {
+  display: block;
+  height: 1.75rem;
+  width: auto;
+  max-width: 7.5rem;
+  object-fit: contain;
+}
+
+@keyframes tool-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -221,5 +262,14 @@ body {
   .copied-note,
   .copied-note-text {
     transition: none;
+  }
+
+  .tool-track {
+    animation: none;
+  }
+
+  .tool-marquee {
+    overflow-x: auto;
+    mask-image: none;
   }
 }
