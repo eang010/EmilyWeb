@@ -11,7 +11,7 @@ const plex = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Emily Ang — Digital Business Analyst",
+  title: "Emily Ang",
   description:
     "Digital business analyst. Selected work, a short CV, and a direct way to get in touch.",
 };

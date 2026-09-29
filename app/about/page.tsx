@@ -1,5 +1,6 @@
 import Image from "next/image";
 import gtLogo from "@/components/images/GTlogo.gif";
+import meHeadshot from "@/components/images/me-hs.jpg";
 import ncsLogo from "@/components/images/ncs_logo.avif";
 import ToolsMarquee from "@/components/ToolsMarquee";
 import { experiences } from "@/data/experience";
@@ -24,32 +25,76 @@ const education = [
 
 export default function About() {
   return (
-    <div className="w-full max-w-7xl">
+    <div className="py-12 pl-6 pr-20 sm:pl-10 sm:pr-32 lg:py-16 lg:pl-16 lg:pr-48">
       <h1 className="text-[15px] font-medium">About</h1>
-      <div className="mt-10 max-w-3xl">
-        <p className="text-[15px] leading-relaxed text-foreground">
-          I&apos;m drawn to problems that make me think
-        </p>
-        <div className="mt-6 h-px w-8 bg-foreground" aria-hidden="true" />
-        <p className="mt-6 text-display text-foreground">
-          “there has to be
-          <br />
-          a better way.”
-        </p>
-        <div className="mt-10 space-y-5 text-[15px] leading-[1.65] text-pretty text-foreground">
-          <p>
-            Most of the time, that turns into me making something, whether it&apos;s a quick automation or a whole digital experience that takes a bit of hassle out of someone&apos;s day or especially my own.
+      <div className="mt-10 grid gap-10 @2xl:grid-cols-[minmax(0,48rem)_auto] @2xl:items-start @2xl:justify-between @2xl:gap-x-16">
+        <Image
+          src={meHeadshot}
+          alt="Emily Ang"
+          priority
+          sizes="(min-width: 42rem) 288px, 100vw"
+          className="h-auto w-full rounded-2xl @2xl:col-start-2 @2xl:row-start-1 @2xl:w-72"
+        />
+        <div className="min-w-0 max-w-3xl">
+          <p className="text-[15px] leading-relaxed text-foreground">
+            Hello! I&apos;m Emily.
+            <svg
+              viewBox="0 0 40 40"
+              aria-hidden="true"
+              className="ml-1.5 inline-block h-[1.55em] w-[1.55em] rotate-[-8deg] align-[-0.32em]"
+            >
+              <path
+                d="M21.2 5.4c-5.2-1.1-11.4 1.6-13.6 7.4-2.4 6.2-.6 12.6 4.2 16.2 4.6 3.4 11.2 4.2 16.2 1.4 5.4-3 7.8-9.6 6.2-15.2-1.4-4.8-6.2-8.6-11.2-9.2"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.15"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M19.6 6.8c-1.6.5-3.4 1.8-4.2 3.2"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.7"
+                strokeLinecap="round"
+              />
+              <path
+                d="M14.6 17.2c.2-.9 1.5-1.1 1.9-.1.3.7-.4 1.5-1.2 1.4-.7-.1-.9-.7-.7-1.3M23.4 16.2c.15-.85 1.45-.7 1.7.25.2.75-.45 1.4-1.15 1.3-.65-.1-.75-.85-.55-1.55"
+                fill="currentColor"
+              />
+              <path
+                d="M14.2 24.2c1.2 2.2 3.6 3.8 6.6 4.1 2.6.2 5.1-.8 6.8-2.6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.15"
+                strokeLinecap="round"
+              />
+            </svg>
           </p>
-          <p>
-            Sometimes I&apos;ll just watch how someone works and wonder why it&apos;s done that way, and whether it has to be. Once I spot the friction, I want to get rid of it.
+          <p className="mt-5 text-[15px] leading-relaxed text-foreground">
+            I&apos;m drawn to problems that make me think
           </p>
-          <p>
-            Shoutout to AI for speeding all of this up. It's part of how I plan, test and build, and it helps me turn ideas into something real in half the time.
+          <div className="mt-6 h-px w-8 bg-foreground" aria-hidden="true" />
+          <p className="mt-6 text-display text-foreground">
+            “there has to be
+            <br />
+            a better way.”
           </p>
-          <p>
-            I think technology should make life easier,
-            <span className="mt-2 block font-medium">and I'm happiest when something I've made gives someone a bit of their time back.</span>
-          </p>
+          <div className="mt-10 space-y-5 text-[15px] leading-[1.65] text-pretty text-foreground">
+            <p>
+              Most of the time, that turns into me making something, whether it&apos;s a quick automation or a whole digital experience that takes a bit of hassle out of someone&apos;s day or especially my own.
+            </p>
+            <p>
+              Sometimes I&apos;ll just watch how someone works and wonder why it&apos;s done that way, and whether it has to be. Once I spot the friction, I want to get rid of it.
+            </p>
+            <p>
+              Shoutout to AI for speeding all of this up. It's part of how I plan, test and build, and it helps me turn ideas into something real in half the time.
+            </p>
+            <p>
+              I think technology should make life easier,
+              <span className="mt-2 block font-medium">and I'm happiest when something I've made gives someone a bit of their time back.</span>
+            </p>
+          </div>
         </div>
       </div>
 
