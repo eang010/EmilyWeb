@@ -28,6 +28,12 @@ typography:
     fontWeight: 400
     lineHeight: 1.25
     letterSpacing: "0.01em"
+  display:
+    fontFamily: "IBM Plex Sans, sans-serif"
+    fontSize: "32px"
+    fontWeight: 500
+    lineHeight: 1.2
+    letterSpacing: "normal"
 rounded:
   none: "0px"
 spacing:

@@ -16,6 +16,10 @@
   --color-hairline: var(--hairline);
   --color-paper: var(--paper);
   --font-sans: var(--font-plex), "IBM Plex Sans", sans-serif;
+  --text-display: 2rem;
+  --text-display--line-height: 1.2;
+  --text-display--letter-spacing: 0em;
+  --text-display--font-weight: 500;
 }
 
 body {
