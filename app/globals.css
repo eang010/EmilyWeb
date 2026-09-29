@@ -1,130 +1,35 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafaf9;
-  --foreground: #111111;
-  --muted: #e5e5e0;
-  --accent: var(--foreground);
-  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #f5f5f4;
-    --muted: #262626;
-  }
-}
-
-/* Manual override from the theme toggle — wins over the system preference. */
-:root[data-theme="dark"] {
-  --background: #0a0a0a;
-  --foreground: #f5f5f4;
-  --muted: #262626;
-}
-
-:root[data-theme="light"] {
-  --background: #fafaf9;
-  --foreground: #111111;
-  --muted: #e5e5e0;
+  --background: #ffffff;
+  --foreground: #121212;
+  --quiet: #595959;
+  --hairline: #e6e6e6;
+  --paper: #ffffff;
+  color-scheme: light;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-muted: var(--muted);
-  --color-accent: var(--accent);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-quiet: var(--quiet);
+  --color-hairline: var(--hairline);
+  --color-paper: var(--paper);
+  --font-sans: var(--font-plex), "IBM Plex Sans", sans-serif;
 }
 
 body {
-  background: var(--background);
+  background: var(--paper);
   color: var(--foreground);
-  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-@keyframes marquee-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-marquee {
-  animation: marquee-scroll 22s linear infinite;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
-
-@keyframes works-in {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.works-index-row {
-  animation: works-in 280ms var(--ease-out) both;
-}
-
-.works-index-row:nth-child(1) {
-  animation-delay: 0ms;
-}
-.works-index-row:nth-child(2) {
-  animation-delay: 40ms;
-}
-.works-index-row:nth-child(3) {
-  animation-delay: 80ms;
-}
-.works-index-row:nth-child(4) {
-  animation-delay: 120ms;
-}
-.works-index-row:nth-child(5) {
-  animation-delay: 160ms;
-}
-.works-index-row:nth-child(6) {
-  animation-delay: 200ms;
-}
-
-.works-chips {
-  display: flex;
-  gap: 0.5rem;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x proximity;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-  padding-right: 1.75rem;
-  mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 2rem), transparent);
-}
-
-.works-chips::-webkit-scrollbar {
-  display: none;
-}
-
-.works-chip {
-  scroll-snap-align: start;
-  flex-shrink: 0;
+:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  /* Stop the marquee's movement but keep it visible — color/opacity transitions
-     elsewhere (e.g. the theme toggle) are left alone on purpose. */
-  .animate-marquee {
-    animation: none;
-  }
-
-  .works-index-row {
-    animation: none;
+  html {
+    scroll-behavior: auto;
   }
 }

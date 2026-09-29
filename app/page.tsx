@@ -1,39 +1,33 @@
+/**
+ * THESIS: The work is the homepage. A fixed left rail and a project grid carry the site, refusing the centered hero, floating pill nav, and a services pitch.
+ * OWN-WORLD: White paper, black ink, IBM Plex Sans. EA monogram, Projects and About in the rail, LinkedIn and a mail mark bottom-left. 16:9 covers with the title underneath.
+ * STORY: A recruiter or client sees the work first, opens a case, and reaches Emily from the corner.
+ * FIRST VIEWPORT: Monogram and nav top-left. Project covers fill the rest. Mail slides the address out to the right.
+ * FORM: Pinned to pennybanks.com. Sketchbook and Services omitted.
+ */
 import Link from "next/link";
-import Avatar from "@/components/Avatar";
-import GetInTouch from "@/components/GetInTouch";
-import TrustedByMarquee from "@/components/TrustedByMarquee";
+import ProjectCover from "@/components/ProjectCover";
+import { projects } from "@/data/projects";
 
 export default function Home() {
   return (
     <div>
-      <section className="mx-auto flex min-h-[100svh] max-w-5xl flex-col justify-center px-6 pt-[calc(4.5rem+env(safe-area-inset-top))] pb-[calc(6.5rem+env(safe-area-inset-bottom))] sm:min-h-[85svh] sm:px-6 sm:pt-0 sm:pb-0">
-        <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5">
-          <Avatar size={72} className="size-14 sm:size-[72px]" />
-          <div>
-            <p className="font-mono text-sm text-accent">Emily Ang</p>
-            <h1 className="text-[clamp(1.75rem,6.5vw,3.75rem)] font-medium tracking-tight sm:text-6xl">
-              Digital Business Analyst
-            </h1>
-          </div>
-        </div>
-        <p className="mt-4 max-w-xl text-base text-foreground/70 sm:mt-6 sm:text-lg">
-          Placeholder positioning line — one sentence on the mechanism that
-          makes your work distinct, to be replaced with real copy.
-        </p>
-        <div className="mt-6 flex max-w-full flex-col items-start gap-3 sm:mt-8 sm:flex-row sm:flex-wrap">
-          <Link
-            href="/works"
-            className="rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background"
-          >
-            See the work
-          </Link>
-          <GetInTouch variant="outline" />
-        </div>
-      </section>
-
-      <footer className="mx-auto max-w-5xl px-6 pb-16">
-        <TrustedByMarquee />
-      </footer>
+      <h1 className="sr-only">Projects</h1>
+      <ul className="grid grid-cols-1 gap-x-9 gap-y-9 sm:grid-cols-2 xl:grid-cols-3">
+        {projects.map((project) => (
+          <li key={project.slug}>
+            <Link
+              href={`/works/${project.slug}`}
+              className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
+            >
+              <ProjectCover slug={project.slug} />
+              <p className="mt-2.5 text-[13px] leading-tight text-foreground">
+                {project.title}
+              </p>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
-import { Home, User, Briefcase, Sparkles } from "lucide-react";
+import { Home, User, Briefcase } from "lucide-react";
 import ContactMenu from "@/components/ContactMenu";
 import { glass, press } from "@/lib/motion";
 
@@ -12,7 +12,6 @@ const homeItem = { href: "/", label: "Home", icon: Home };
 const middleItems = [
   { href: "/about", label: "About", icon: User },
   { href: "/works", label: "Works", icon: Briefcase },
-  { href: "/services", label: "Services", icon: Sparkles },
 ] as const;
 
 function isActive(pathname: string, href: string) {

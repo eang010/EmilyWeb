@@ -1,76 +1,56 @@
-import Reveal from "@/components/Reveal";
-import WorkExperienceTree from "@/components/WorkExperienceTree";
+import { experiences } from "@/data/experience";
+
+const tools = ["Figma", "Notion", "Jira", "SQL", "Miro", "Confluence"];
 
 export default function About() {
   return (
-    <div className="mx-auto max-w-5xl px-6 py-24 md:py-32">
-      <div className="flex flex-wrap items-end justify-between gap-6">
-        <h1 className="text-3xl font-medium tracking-tight sm:text-4xl">
-          About
-        </h1>
-        <div>
-          <a
-            href="/resume.pdf"
-            download
-            className="rounded-full border border-muted px-5 py-2.5 text-sm font-medium"
-          >
-            Download CV
-          </a>
-          <p className="mt-2 text-xs text-foreground/40">
-            Placeholder link — add the real PDF at public/resume.pdf
-          </p>
-        </div>
-      </div>
+    <div className="max-w-3xl">
+      <h1 className="text-[15px] font-medium">About</h1>
+      <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-foreground">
+        Placeholder — a short paragraph on who you are, what you care about,
+        and how you approach business analysis and design.
+      </p>
 
-      <Reveal className="mt-16">
-        <h2 className="font-mono text-xs uppercase tracking-widest text-foreground/50">
-          About me
-        </h2>
-        <p className="mt-4 max-w-2xl text-foreground/70">
-          Placeholder — a short paragraph on who you are, what you care about,
-          and how you approach business analysis and design.
-        </p>
-      </Reveal>
+      <a href="/resume.pdf" download className="mt-8 inline-block text-[15px] underline underline-offset-4">
+        Download CV
+      </a>
+      <p className="mt-2 text-[13px] text-quiet">
+        Placeholder link — add the real PDF at public/resume.pdf
+      </p>
 
-      <WorkExperienceTree />
+      <h2 className="mt-16 text-[15px] font-medium">Experience</h2>
+      <ul className="mt-6">
+        {experiences.map((exp) => (
+          <li key={exp.role} className="border-t border-hairline py-6">
+            <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+              <p className="text-[15px]">
+                {exp.role}<span className="text-quiet">, {exp.company}</span>
+              </p>
+              <p className="text-[13px] text-quiet">{exp.period}</p>
+            </div>
+            <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-foreground">
+              {exp.description}
+            </p>
+          </li>
+        ))}
+      </ul>
 
-      <Reveal className="mt-16">
-        <h2 className="font-mono text-xs uppercase tracking-widest text-foreground/50">
-          Tools
-        </h2>
-        <div className="mt-4 flex flex-wrap gap-2">
-          {["Figma", "Notion", "Jira", "SQL", "Miro", "Confluence"].map((tool) => (
-            <span
-              key={tool}
-              className="rounded-full border border-muted px-4 py-1.5 text-sm text-foreground/70"
-            >
-              {tool}
-            </span>
-          ))}
-        </div>
-      </Reveal>
+      <h2 className="mt-16 text-[15px] font-medium">Tools</h2>
+      <p className="mt-4 text-[15px] leading-relaxed">{tools.join(", ")}</p>
 
-      <Reveal className="mt-16">
-        <h2 className="font-mono text-xs uppercase tracking-widest text-foreground/50">
-          Education
-        </h2>
-        <ul className="mt-4 space-y-6">
-          {[1, 2].map((i) => (
-            <Reveal
-              key={i}
-              as="li"
-              delay={i * 0.08}
-              className="flex flex-wrap justify-between gap-2 border-b border-muted pb-6"
-            >
-              <div>
-                <p className="font-medium">Placeholder Degree {i}</p>
-                <p className="text-sm text-foreground/60">Placeholder Institution {i}</p>
-              </div>
-              <p className="font-mono text-xs text-foreground/40">20XX</p>
-            </Reveal>
-          ))}
-        </ul>
-      </Reveal>
+      <h2 className="mt-16 text-[15px] font-medium">Education</h2>
+      <ul className="mt-6">
+        {[1, 2].map((i) => (
+          <li key={i} className="border-t border-hairline py-6">
+            <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+              <p className="text-[15px]">
+                Placeholder Degree {i}<span className="text-quiet">, Placeholder Institution {i}</span>
+              </p>
+              <p className="text-[13px] text-quiet">20XX</p>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

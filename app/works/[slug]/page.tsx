@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import GetInTouch from "@/components/GetInTouch";
+import ProjectCover from "@/components/ProjectCover";
 import { projects } from "@/data/projects";
 
 export function generateStaticParams() {
@@ -17,72 +17,57 @@ export default async function CaseStudy({
   if (!project) notFound();
 
   return (
-    <div className="mx-auto max-w-3xl px-6 py-24 md:py-32">
-      <Link href="/works" className="text-sm text-foreground/50">
-        ← Back to works
-      </Link>
-
-      <div className="mt-6 flex aspect-video items-center justify-center rounded-2xl bg-muted/40 text-sm text-foreground/40">
-        Project image placeholder
-      </div>
-
-      <div className="mt-8 mb-2 flex flex-wrap gap-2 font-mono text-xs text-foreground/50">
-        {project.tags.map((tag) => (
-          <span key={tag}>{tag}</span>
-        ))}
-      </div>
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <h1 className="text-3xl font-medium tracking-tight sm:text-4xl">
-          {project.title}
-        </h1>
+    <article>
+      <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
+        <h1 className="text-[15px] font-medium">{project.title}</h1>
         {project.url && (
           <a
             href={project.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full border border-muted px-5 py-2.5 text-sm font-medium"
+            className="text-[13px] text-quiet underline underline-offset-4 hover:text-foreground"
           >
-            {project.url.includes("github.com") ? "View on GitHub" : "Visit live site"} ↗
+            {project.url.includes("github.com") ? "View on GitHub" : "Visit live site"}
           </a>
         )}
       </div>
+      <p className="mt-2 text-[13px] text-quiet">{project.tags.join(" · ")}</p>
 
-      <section className="mt-12">
-        <h2 className="font-mono text-xs uppercase tracking-widest text-foreground/50">
-          Product &amp; problem
-        </h2>
-        <p className="mt-3 text-foreground/70">{project.problem}</p>
+      <div className="mt-10 grid gap-x-10 gap-y-10 md:grid-cols-3">
+        <section>
+          <h2 className="text-[15px] font-medium">Product &amp; problem</h2>
+          <p className="mt-3 text-[15px] leading-relaxed">{project.problem}</p>
+        </section>
+        <section>
+          <h2 className="text-[15px] font-medium">My role</h2>
+          <p className="mt-3 text-[15px] leading-relaxed">{project.role}</p>
+        </section>
+        <section>
+          <h2 className="text-[15px] font-medium">Decisions</h2>
+          <ul className="mt-3 space-y-3 text-[15px] leading-relaxed">
+            {project.decisions.map((decision) => (
+              <li key={decision}>{decision}</li>
+            ))}
+          </ul>
+        </section>
+      </div>
+
+      <section className="mt-10 max-w-2xl">
+        <h2 className="text-[15px] font-medium">Outcome</h2>
+        <p className="mt-3 text-[15px] leading-relaxed">{project.outcome}</p>
       </section>
 
-      <section className="mt-10">
-        <h2 className="font-mono text-xs uppercase tracking-widest text-foreground/50">
-          My role &amp; contribution
-        </h2>
-        <p className="mt-3 text-foreground/70">{project.role}</p>
-      </section>
-
-      <section className="mt-10">
-        <h2 className="font-mono text-xs uppercase tracking-widest text-foreground/50">
-          Key design decisions
-        </h2>
-        <ul className="mt-3 list-disc space-y-2 pl-5 text-foreground/70">
-          {project.decisions.map((decision) => (
-            <li key={decision}>{decision}</li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="mt-10 border-b border-muted pb-16">
-        <h2 className="font-mono text-xs uppercase tracking-widest text-foreground/50">
-          Outcome
-        </h2>
-        <p className="mt-3 text-foreground/70">{project.outcome}</p>
-      </section>
+      <hr className="mt-12 border-hairline" />
 
       <div className="mt-10">
-        <p className="mb-3 text-foreground/70">Interested in working together?</p>
-        <GetInTouch />
+        <ProjectCover slug={project.slug} />
       </div>
-    </div>
+
+      <p className="mt-8 text-[13px] text-quiet">
+        <Link href="/" className="underline underline-offset-4 hover:text-foreground">
+          All projects
+        </Link>
+      </p>
+    </article>
   );
 }

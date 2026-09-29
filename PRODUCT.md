@@ -8,11 +8,11 @@ web
 
 ## Users
 
-Primary: prospective clients/employers and professional contacts (recruiters, collaborators) evaluating Emily Ang, a digital business analyst, by browsing her work and services. Secondary: Emily herself, as a personal brand/portfolio presence.
+Primary: prospective clients/employers and professional contacts (recruiters, collaborators) evaluating Emily Ang, a digital business analyst, by browsing her work. Secondary: Emily herself, as a personal brand/portfolio presence.
 
 ## Product Purpose
 
-A personal website for Emily Ang to share who she is, the work she's done (case studies), and the services she offers. Revised (supersedes earlier "just browse" framing): the site has three concrete jobs — (1) let businesses/individuals reach out for business engagements, (2) showcase work for recruiters and prospective employers, (3) serve as a digital CV/resume. Credibility and memorability still matter, but there is now a real action the site must support: getting in touch and being assessed as a hire/vendor.
+A personal website for Emily Ang to share who she is and the work she's done. The site has three jobs — (1) let businesses and individuals reach out, (2) showcase work for recruiters and prospective employers, (3) serve as a digital CV/resume. There is no services page.
 
 ## Positioning
 
@@ -20,16 +20,15 @@ Inferred, please confirm: a business analyst who treats aesthetics and user expe
 
 ## Operating Context
 
-Single personal site with five main surfaces: Landing, About, Works, Services, Contact. Persistent bottom-floating "pill" navigation (Telegram-style) across all pages. Emily will supply real content (case study text, images, work history, tools, education, resume file, contact details) later; until then, all content is placeholder. Emily returns to Claude Code for future edits (not a self-service CMS).
+Single personal site. The homepage is the project index. Persistent left rail: monogram, Projects, About. Contact lives in the bottom-left corner (LinkedIn, and a mail mark that reveals the email). No Sketchbook page and no Services page. Emily will supply real project images, the About bio, education, and a resume PDF later; until then those spots stay clearly placeholder. Emily returns to Claude Code for future edits (not a self-service CMS).
 
 ## Capabilities and Constraints
 
 - Stack: Next.js + Tailwind CSS + Framer Motion, hosted on Vercel (confirmed).
 - No CMS/markdown content layer — content lives in code, edited via Claude Code on request.
 - Case study entries (Works page) each need: product & problem, role & contribution, key design decisions, outcome.
-- Services page distinguishes two offering types: a fixed-scope productized package ("something ready") vs. a bespoke/custom engagement ("something customized").
 - About page doubles as a digital CV/resume: work experience, tools, education, plus a resume download affordance (placeholder file until Emily supplies the real PDF).
-- Contact surface: real reachability for business inquiries and recruiters (email/link placeholder for now) — no backend form submission built unless Emily asks for one; a mailto/contact-details approach is the lazy-correct default at this stage.
+- Contact surface: LinkedIn plus the email address, revealed from the mail mark in the bottom-left corner. No backend form.
 
 ## Brand Commitments
 
