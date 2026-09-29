@@ -35,6 +35,16 @@ export default function RootLayout({
             document.addEventListener("click", function (event) {
               var node = event.target;
               if (!node || !node.closest) return;
+              if (node.closest("[data-close-contact]")) {
+                var contactToggle = document.getElementById("mobile-contact-toggle");
+                if (contactToggle) contactToggle.checked = false;
+                var mobile = document.querySelector(".mobile-contact");
+                if (mobile) {
+                  mobile.removeAttribute("data-copied");
+                  var copied = mobile.querySelector(".copied-note-text");
+                  if (copied) copied.textContent = "";
+                }
+              }
               var button = node.closest("[data-copy-email]");
               if (!button) return;
               var email = button.getAttribute("data-copy-email");
