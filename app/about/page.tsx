@@ -1,7 +1,7 @@
-import Image from "next/image";
 import gtLogo from "@/components/images/GTlogo.gif";
 import meHeadshot from "@/components/images/me-hs.jpg";
 import ncsLogo from "@/components/images/ncs_logo.avif";
+import SkeletonImage from "@/components/SkeletonImage";
 import ToolsMarquee from "@/components/ToolsMarquee";
 import { experiences } from "@/data/experience";
 
@@ -25,18 +25,19 @@ const education = [
 
 export default function About() {
   return (
-    <div className="py-12 px-6 sm:pl-10 sm:pr-32 lg:py-16 lg:pl-16 lg:pr-48">
-      <h1 className="text-[15px] font-medium">About</h1>
+    <div className="about-page py-12 px-6 sm:pl-10 sm:pr-32 lg:py-16 lg:pl-16 lg:pr-48">
+      <h1 className="scroll-reveal text-[15px] font-medium">About</h1>
       <div className="mt-10 grid gap-10 @2xl:grid-cols-[minmax(0,48rem)_auto] @2xl:items-start @2xl:justify-between @2xl:gap-x-16">
-        <Image
+        <SkeletonImage
           src={meHeadshot}
           alt="Emily Ang"
           priority
           sizes="(min-width: 42rem) 288px, 100vw"
-          className="h-auto w-full rounded-2xl @2xl:col-start-2 @2xl:row-start-1 @2xl:w-72"
+          wrapperClassName="scroll-reveal w-full rounded-2xl @2xl:col-start-2 @2xl:row-start-1 @2xl:w-72"
+          className="h-auto w-full rounded-2xl"
         />
         <div className="min-w-0 max-w-3xl">
-          <p className="text-[15px] leading-relaxed text-foreground">
+          <p className="scroll-reveal text-[15px] leading-relaxed text-foreground">
             Hello! I&apos;m Emily.
             <svg
               viewBox="0 0 40 40"
@@ -71,26 +72,26 @@ export default function About() {
               />
             </svg>
           </p>
-          <p className="mt-5 text-[15px] leading-relaxed text-foreground">
+          <p className="scroll-reveal mt-5 text-[15px] leading-relaxed text-foreground">
             I&apos;m drawn to problems that make me think
           </p>
-          <div className="mt-6 h-px w-8 bg-foreground" aria-hidden="true" />
-          <p className="mt-6 text-display text-foreground">
+          <div className="scroll-reveal mt-6 h-px w-8 bg-foreground" aria-hidden="true" />
+          <p className="scroll-reveal mt-6 text-display text-foreground">
             “there has to be
             <br />
             a better way.”
           </p>
           <div className="mt-10 space-y-5 text-[15px] leading-[1.65] text-pretty text-foreground">
-            <p>
-              Most of the time, that turns into me making something, whether it&apos;s a quick automation or a whole digital experience that takes a bit of hassle out of someone&apos;s day or especially my own.
+            <p className="scroll-reveal">
+              Most of the time, that turns into me making something, whether it&apos;s a quick automation or a whole digital experience that takes a bit of hassle out of someone&apos;s day, especially my own.
             </p>
-            <p>
+            <p className="scroll-reveal">
               Sometimes I&apos;ll just watch how someone works and wonder why it&apos;s done that way, and whether it has to be. Once I spot the friction, I want to get rid of it.
             </p>
-            <p>
+            <p className="scroll-reveal">
               Shoutout to AI for speeding all of this up. It's part of how I plan, test and build, and it helps me turn ideas into something real in half the time.
             </p>
-            <p>
+            <p className="scroll-reveal">
               I think technology should make life easier,
               <span className="mt-2 block font-medium">and I'm happiest when something I've made gives someone a bit of their time back.</span>
             </p>
@@ -98,14 +99,14 @@ export default function About() {
         </div>
       </div>
 
-      <h2 className="mt-16 text-[15px] font-medium">Experience</h2>
-      <div className="mt-6 flex items-center gap-10">
-        <Image src={gtLogo} alt="GovTech" className="h-11 w-auto" />
-        <Image src={ncsLogo} alt="NCS" className="h-6 w-auto" />
+      <h2 className="scroll-reveal mt-16 text-[15px] font-medium">Experience</h2>
+      <div className="scroll-reveal mt-6 flex items-center gap-10">
+        <SkeletonImage src={gtLogo} alt="GovTech" className="h-11 w-auto" />
+        <SkeletonImage src={ncsLogo} alt="NCS" className="h-6 w-auto" />
       </div>
       <ul className="mt-6">
         {experiences.map((exp) => (
-          <li key={exp.role} className="border-t border-hairline py-6">
+          <li key={exp.role} className="scroll-reveal border-t border-hairline py-6">
             <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
               <p className="text-[15px]">
                 {exp.role}<span className="text-quiet">, {exp.company}</span>
@@ -127,13 +128,15 @@ export default function About() {
         ))}
       </ul>
 
-      <h2 className="mt-16 text-[15px] font-medium">Tools</h2>
-      <ToolsMarquee />
+      <div className="scroll-reveal">
+        <h2 className="mt-16 text-[15px] font-medium">Tools</h2>
+        <ToolsMarquee />
+      </div>
 
-      <h2 className="mt-16 text-[15px] font-medium">Education</h2>
+      <h2 className="scroll-reveal mt-16 text-[15px] font-medium">Education</h2>
       <ul className="mt-6">
         {education.map((item) => (
-          <li key={item.school} className="border-t border-hairline py-6">
+          <li key={item.school} className="scroll-reveal border-t border-hairline py-6">
             <div className="flex items-baseline justify-between gap-x-6">
               <p className="min-w-0 text-[15px]">
                 {item.credential}
@@ -144,6 +147,44 @@ export default function About() {
           </li>
         ))}
       </ul>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `(function () {
+          function settle(root) {
+            var images = root.querySelectorAll("img");
+            var left = images.length;
+            function finish() {
+              left -= 1;
+              if (left > 0) return;
+              root.querySelectorAll(".skeleton").forEach(function (node) { node.remove(); });
+              root.removeAttribute("aria-busy");
+            }
+            if (!left) return;
+            images.forEach(function (img) {
+              if (img.complete) finish();
+              else {
+                img.addEventListener("load", finish, { once: true });
+                img.addEventListener("error", finish, { once: true });
+              }
+            });
+          }
+          document.querySelectorAll(".about-page .skeleton-host").forEach(settle);
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+          if (CSS.supports("animation-timeline", "view()")) return;
+          var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("is-shown");
+              observer.unobserve(entry.target);
+            });
+          }, { rootMargin: "0px 0px -10% 0px", threshold: 0.2 });
+          document.querySelectorAll(".about-page .scroll-reveal").forEach(function (node) {
+            node.classList.add("scroll-reveal-js");
+            observer.observe(node);
+          });
+        })();`,
+        }}
+      />
     </div>
   );
 }

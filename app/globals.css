@@ -210,6 +210,7 @@ body {
 }
 
 .tool-marquee {
+  position: relative;
   margin-top: 1.25rem;
   overflow: hidden;
   mask-image: linear-gradient(90deg, transparent, var(--foreground) 8%, var(--foreground) 92%, transparent);
@@ -250,6 +251,46 @@ body {
   }
 }
 
+.skeleton {
+  background: #f3f3f3;
+  animation: skeleton-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes skeleton-pulse {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@keyframes show-in-place {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .scroll-reveal {
+    animation-name: show-in-place;
+    animation-duration: auto;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 200px;
+  }
+}
+
+.scroll-reveal-js {
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-reveal-js.is-shown {
+  opacity: 1;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -271,5 +312,13 @@ body {
   .tool-marquee {
     overflow-x: auto;
     mask-image: none;
+  }
+
+  .skeleton,
+  .scroll-reveal,
+  .scroll-reveal-js {
+    animation: none;
+    opacity: 1;
+    transition: none;
   }
 }
