@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Check, Copy, Mail } from "lucide-react";
+import { Check, ChevronUp, Copy, Mail } from "lucide-react";
 import Logo from "@/components/Logo";
 import PillNav from "@/components/PillNav";
 
@@ -105,6 +105,22 @@ function EmailMark() {
   );
 }
 
+function ScrollUp() {
+  return (
+    <button
+      type="button"
+      className="scroll-up contact-mark fixed right-4 bottom-[calc(4.5rem+env(safe-area-inset-bottom))] z-40 bg-paper lg:right-10 lg:bottom-8"
+      aria-label="Up one section"
+      aria-hidden="true"
+      tabIndex={-1}
+    >
+      <span className="contact-glyph">
+        <ChevronUp size={22} strokeWidth={1.75} />
+      </span>
+    </button>
+  );
+}
+
 function ContactMarks() {
   return (
     <div className="fixed bottom-8 left-10 z-40 hidden items-center gap-1 bg-paper lg:flex">
@@ -136,7 +152,7 @@ export default function SiteChrome() {
         </nav>
       </aside>
 
-      <div className="sticky top-0 z-30 bg-paper px-6 py-4 lg:hidden">
+      <div data-site-header className="sticky top-0 z-30 bg-paper px-6 py-4 lg:hidden">
         <Link href="/" aria-label="Emily Ang, home" className="text-foreground">
           <Logo />
         </Link>
@@ -144,6 +160,7 @@ export default function SiteChrome() {
 
       <PillNav />
       <ContactMarks />
+      <ScrollUp />
     </>
   );
 }

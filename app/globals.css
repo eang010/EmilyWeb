@@ -54,6 +54,39 @@ body {
   transform: scale(1.45);
 }
 
+.scroll-up {
+  border-radius: 9999px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.scroll-up.is-on {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.scroll-up.is-on .contact-glyph {
+  animation: chevron-pulse 1.6s ease-in-out infinite;
+}
+
+.scroll-up.is-on:hover .contact-glyph,
+.scroll-up.is-on:focus-visible .contact-glyph {
+  animation: none;
+}
+
+@keyframes chevron-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(1.12);
+  }
+}
+
 .email-slot {
   position: relative;
   display: flex;
@@ -307,6 +340,12 @@ body {
   .scroll-reveal-js {
     animation: none;
     opacity: 1;
+    transition: none;
+  }
+
+  .scroll-up,
+  .scroll-up .contact-glyph {
+    animation: none;
     transition: none;
   }
 }
