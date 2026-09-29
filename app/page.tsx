@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div>
       <h1 className="sr-only">Projects</h1>
-      <ul className="grid grid-cols-1 gap-x-9 gap-y-9 md:grid-cols-3">
+      <ul className="grid grid-cols-1 gap-x-9 gap-y-9 lg:grid-cols-2">
         {projects.map((project) => (
           <li key={project.slug}>
             <Link

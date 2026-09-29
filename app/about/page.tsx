@@ -11,13 +11,6 @@ export default function About() {
         and how you approach business analysis and design.
       </p>
 
-      <a href="/resume.pdf" download className="mt-8 inline-block text-[15px] underline underline-offset-4">
-        Download CV
-      </a>
-      <p className="mt-2 text-[13px] text-quiet">
-        Placeholder link — add the real PDF at public/resume.pdf
-      </p>
-
       <h2 className="mt-16 text-[15px] font-medium">Experience</h2>
       <ul className="mt-6">
         {experiences.map((exp) => (

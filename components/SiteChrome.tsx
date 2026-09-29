@@ -79,20 +79,20 @@ function EmailMark() {
       <div id="email-reveal" className="email-reveal">
         <div className="email-reveal-clip">
           <div className="email-reveal-text">
-            <a href={`mailto:${EMAIL}`} className="email-address">
-              {EMAIL}
-            </a>
             <button
               type="button"
               data-copy-email={EMAIL}
               aria-label="Copy email address"
-              className="email-copy"
+              className="email-address"
             >
-              <span className="copy-icon" aria-hidden="true">
-                <Copy size={14} strokeWidth={1.75} />
-              </span>
-              <span className="copied-icon" aria-hidden="true">
-                <Check size={14} strokeWidth={1.75} />
+              {EMAIL}
+              <span className="email-copy">
+                <span className="copy-icon" aria-hidden="true">
+                  <Copy size={14} strokeWidth={1.75} />
+                </span>
+                <span className="copied-icon" aria-hidden="true">
+                  <Check size={14} strokeWidth={1.75} />
+                </span>
               </span>
             </button>
           </div>
