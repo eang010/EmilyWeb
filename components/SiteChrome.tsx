@@ -98,6 +98,9 @@ function EmailMark() {
           </div>
         </div>
       </div>
+      <span className="copied-note" aria-live="polite">
+        <span className="copied-note-text" />
+      </span>
     </div>
   );
 }

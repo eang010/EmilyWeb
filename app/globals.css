@@ -133,6 +133,34 @@ body {
   display: flex;
 }
 
+.copied-note {
+  display: grid;
+  grid-template-columns: 0fr;
+  transition: grid-template-columns 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.copied-note-text {
+  overflow: hidden;
+  min-width: 0;
+  padding-left: 0.35rem;
+  font-size: 13px;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--foreground);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.email-slot[data-copied="true"] .copied-note,
+.mobile-contact[data-copied="true"] .copied-note {
+  grid-template-columns: 1fr;
+}
+
+.email-slot[data-copied="true"] .copied-note-text,
+.mobile-contact[data-copied="true"] .copied-note-text {
+  opacity: 1;
+}
+
 .mobile-contact {
   display: flex;
   align-items: center;
@@ -185,7 +213,9 @@ body {
   .email-reveal,
   .email-reveal-text,
   .contact-glyph,
-  .mobile-contact-reveal {
+  .mobile-contact-reveal,
+  .copied-note,
+  .copied-note-text {
     transition: none;
   }
 }

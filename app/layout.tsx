@@ -39,16 +39,24 @@ export default function RootLayout({
               if (!button) return;
               var email = button.getAttribute("data-copy-email");
               function mark() {
-                button.setAttribute("data-copied", "true");
                 button.setAttribute("aria-label", "Email copied");
                 var emailToggle = document.getElementById("email-toggle");
                 var contactToggle = document.getElementById("mobile-contact-toggle");
                 if (emailToggle) emailToggle.checked = false;
                 if (contactToggle) contactToggle.checked = false;
-                window.setTimeout(function () {
-                  button.removeAttribute("data-copied");
+                var slot = button.closest(".email-slot, .mobile-contact");
+                if (!slot) return;
+                var note = slot.querySelector(".copied-note-text");
+                if (note) note.textContent = "Copied";
+                slot.setAttribute("data-copied", "true");
+                window.clearTimeout(slot.__copiedTimer);
+                slot.__copiedTimer = window.setTimeout(function () {
+                  slot.removeAttribute("data-copied");
                   button.setAttribute("aria-label", "Copy email address");
-                }, 1500);
+                  window.setTimeout(function () {
+                    if (note) note.textContent = "";
+                  }, 400);
+                }, 1000);
               }
               function fallback() {
                 var area = document.createElement("textarea");
