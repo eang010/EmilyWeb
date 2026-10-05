@@ -25,7 +25,7 @@ export const experiences: {
     ],
   },
   {
-    role: "Application Consultant",
+    role: "Application Consultant | Software Engineer",
     company: "NCS Group",
     period: "Jul 2019 — Jan 2023",
     description: [
