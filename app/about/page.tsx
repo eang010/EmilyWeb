@@ -113,17 +113,20 @@ export default function About() {
               </p>
               <p className="text-[13px] text-quiet">{exp.period}</p>
             </div>
-            <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-foreground">
-              {exp.description.map((part) =>
-                part.accent ? (
-                  <span key={part.text} className="font-medium">
-                    {part.text}
-                  </span>
-                ) : (
-                  part.text
-                ),
-              )}
-            </p>
+            {/* Set to true to show the role descriptions again. */}
+            {false && (
+              <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-foreground">
+                {exp.description.map((part) =>
+                  part.accent ? (
+                    <span key={part.text} className="font-medium">
+                      {part.text}
+                    </span>
+                  ) : (
+                    part.text
+                  ),
+                )}
+              </p>
+            )}
           </li>
         ))}
       </ul>
