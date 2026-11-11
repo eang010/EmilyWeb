@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { LayoutGrid, Mail, User } from "lucide-react";
-import { glass } from "@/lib/motion";
+import { liquidGlass } from "@/lib/motion";
 
 const EMAIL = "3mily.ang@gmail.com";
 const LINKEDIN_URL = "https://www.linkedin.com/in/emilyang20/";
@@ -28,7 +28,7 @@ export default function PillNav() {
       aria-label="Primary"
       className="fixed inset-x-0 bottom-[calc(1rem+env(safe-area-inset-bottom))] z-50 flex justify-center px-4 lg:hidden"
     >
-      <ul className={`flex items-center gap-1 rounded-full p-1 ${glass}`}>
+      <ul className={`flex items-center gap-1 rounded-full p-1 ${liquidGlass}`}>
         {links.map((link) => {
           const active = isActive(pathname, link.href);
           const Icon = link.icon;
@@ -106,12 +106,15 @@ function MobileContact() {
       <div className="mobile-contact">
         <input id="mobile-contact-toggle" type="checkbox" className="email-toggle" />
         <label htmlFor="mobile-contact-toggle" className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full">
-          <Mail size={16} strokeWidth={1.75} />
+          <Mail size={16} strokeWidth={1.75} aria-hidden="true" />
           <span className="sr-only">Contact</span>
         </label>
         <div className="mobile-contact-reveal">
           <div className="mobile-contact-clip">
             <div className="mobile-contact-row">
+              <button type="button" data-copy-email={EMAIL} aria-label="Copy email address" className="mobile-email">
+                {EMAIL}
+              </button>
               <a
                 href={LINKEDIN_URL}
                 target="_blank"
@@ -121,9 +124,6 @@ function MobileContact() {
               >
                 <LinkedinIcon />
               </a>
-              <button type="button" data-copy-email={EMAIL} aria-label="Copy email address" className="mobile-email">
-                {EMAIL}
-              </button>
             </div>
           </div>
         </div>
