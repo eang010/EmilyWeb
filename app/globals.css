@@ -199,8 +199,56 @@ body {
 }
 
 .mobile-contact {
+  position: relative;
   display: flex;
   align-items: center;
+}
+
+.mobile-contact .mobile-linkedin {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 0.75rem);
+  z-index: 2;
+  width: 2.25rem;
+  height: 2.25rem;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(0.6rem) scale(0.72);
+  transform-origin: center bottom;
+  opacity: 0;
+  transition:
+    transform 0.45s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.28s ease,
+    visibility 0.45s;
+}
+
+.mobile-contact:has(.email-toggle:checked) .mobile-linkedin {
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.mobile-linkedin-bounce {
+  display: flex;
+}
+
+.mobile-contact:has(.email-toggle:checked) .mobile-linkedin-bounce {
+  animation: linkedin-alert 0.7s cubic-bezier(0.23, 1, 0.32, 1) 1;
+}
+
+@keyframes linkedin-alert {
+  0%,
+  50%,
+  100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-6px);
+  }
+  70% {
+    transform: translateY(-3px);
+  }
 }
 
 .mobile-contact-reveal {
@@ -390,6 +438,8 @@ body {
   .email-reveal-text,
   .contact-glyph,
   .mobile-contact-reveal,
+  .mobile-linkedin,
+  .mobile-linkedin-bounce,
   .copied-note,
   .copied-note-text {
     transition: none;
@@ -417,6 +467,7 @@ body {
     opacity: 0.3;
   }
 
+  .mobile-linkedin-bounce,
   .scroll-up,
   .scroll-up .contact-glyph {
     animation: none;

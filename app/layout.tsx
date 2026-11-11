@@ -32,9 +32,91 @@ export default function RootLayout({
           (function () {
             if (window.__copyEmailBound) return;
             window.__copyEmailBound = true;
+            function fallbackCopy(email) {
+              var area = document.createElement("textarea");
+              area.value = email;
+              area.setAttribute("readonly", "");
+              area.style.position = "fixed";
+              area.style.left = "-9999px";
+              document.body.appendChild(area);
+              area.select();
+              try { area.setSelectionRange(0, area.value.length); } catch (e) {}
+              var ok = false;
+              try { ok = document.execCommand("copy"); } catch (e) {}
+              area.remove();
+              return ok;
+            }
+            function copyEmail(email) {
+              var legacyOk = fallbackCopy(email);
+              if (navigator.clipboard && navigator.clipboard.writeText) {
+                var pending = navigator.clipboard.writeText(email).then(function () {
+                  return true;
+                }).catch(function () {
+                  return legacyOk;
+                });
+                if (legacyOk) return Promise.resolve(true);
+                return pending;
+              }
+              return Promise.resolve(legacyOk);
+            }
+            function restoreEmail(button) {
+              if (!button) return;
+              var email = button.getAttribute("data-copy-email");
+              if (email) button.textContent = email;
+              button.setAttribute("aria-label", "Copy email address");
+            }
+            function clearCopiedNote(root) {
+              if (!root) return;
+              root.removeAttribute("data-copied");
+              var note = root.querySelector(".copied-note-text");
+              if (note) note.textContent = "";
+            }
+            function cancelMobileAuto(root) {
+              if (!root) return;
+              window.clearTimeout(root.__autoCloseTimer);
+              window.clearTimeout(root.__copiedHoldTimer);
+              restoreEmail(root.querySelector("[data-copy-email]"));
+              clearCopiedNote(root);
+            }
+            function showMobileCopied(root, button) {
+              if (!button) return;
+              window.clearTimeout(root.__copiedHoldTimer);
+              clearCopiedNote(root);
+              button.textContent = "Copied";
+              button.setAttribute("aria-label", "Email copied");
+              root.__copiedHoldTimer = window.setTimeout(function () {
+                var toggle = document.getElementById("mobile-contact-toggle");
+                if (!toggle || !toggle.checked) return;
+                restoreEmail(button);
+              }, 1000);
+            }
+            function showCopied(slot, button) {
+              if (button) button.setAttribute("aria-label", "Email copied");
+              var note = slot.querySelector(".copied-note-text");
+              if (note) note.textContent = "Copied";
+              slot.setAttribute("data-copied", "true");
+              window.clearTimeout(slot.__copiedTimer);
+              slot.__copiedTimer = window.setTimeout(function () {
+                slot.removeAttribute("data-copied");
+                if (button) button.setAttribute("aria-label", "Copy email address");
+                window.setTimeout(function () {
+                  if (note) note.textContent = "";
+                }, 400);
+              }, 1000);
+            }
+            function armMobileCopied(root, toggle, button) {
+              window.clearTimeout(root.__autoCloseTimer);
+              window.clearTimeout(root.__copiedHoldTimer);
+              root.__autoCloseTimer = window.setTimeout(function () {
+                if (!toggle.checked) return;
+                showMobileCopied(root, button);
+              }, 1000);
+            }
             function dismissContact(rootSelector, toggleId) {
               var toggle = document.getElementById(toggleId);
               var root = document.querySelector(rootSelector);
+              if (rootSelector === ".mobile-contact") cancelMobileAuto(root);
+              else if (root) window.clearTimeout(root.__autoCloseTimer);
               var open = toggle && toggle.checked;
               var copied = root && root.getAttribute("data-copied") === "true";
               if (!open && !copied) return;
@@ -53,46 +135,56 @@ export default function RootLayout({
               if (!node || !node.closest) return;
               if (!node.closest(".mobile-contact")) dismissContact(".mobile-contact", "mobile-contact-toggle");
               if (!node.closest(".email-slot")) dismissContact(".email-slot", "email-toggle");
+              var toggle = document.getElementById("mobile-contact-toggle");
+              var mailLabel = node.closest("label[for='mobile-contact-toggle']");
+              if (mailLabel && toggle && !toggle.checked) {
+                var contact = document.querySelector(".mobile-contact");
+                var mailButton = contact && contact.querySelector("[data-copy-email]");
+                var mail = mailButton && mailButton.getAttribute("data-copy-email");
+                if (contact && mailButton && mail) {
+                  restoreEmail(mailButton);
+                  var armed = false;
+                  function armOnce() {
+                    if (armed) return;
+                    armed = true;
+                    armMobileCopied(contact, toggle, mailButton);
+                  }
+                  copyEmail(mail).then(function (ok) {
+                    if (ok) armOnce();
+                  });
+                }
+              }
               var button = node.closest("[data-copy-email]");
               if (!button) return;
               var email = button.getAttribute("data-copy-email");
+              var slot = button.closest(".email-slot, .mobile-contact");
+              if (slot && slot.classList.contains("mobile-contact")) cancelMobileAuto(slot);
+              else if (slot) window.clearTimeout(slot.__autoCloseTimer);
+              var legacyOk = fallbackCopy(email);
               function mark() {
-                button.setAttribute("aria-label", "Email copied");
+                if (slot && slot.classList.contains("mobile-contact")) {
+                  showMobileCopied(slot, button);
+                  return;
+                }
                 var emailToggle = document.getElementById("email-toggle");
                 var contactToggle = document.getElementById("mobile-contact-toggle");
                 if (emailToggle) emailToggle.checked = false;
                 if (contactToggle) contactToggle.checked = false;
-                var slot = button.closest(".email-slot, .mobile-contact");
                 if (!slot) return;
-                var note = slot.querySelector(".copied-note-text");
-                if (note) note.textContent = "Copied";
-                slot.setAttribute("data-copied", "true");
-                window.clearTimeout(slot.__copiedTimer);
-                slot.__copiedTimer = window.setTimeout(function () {
-                  slot.removeAttribute("data-copied");
-                  button.setAttribute("aria-label", "Copy email address");
-                  window.setTimeout(function () {
-                    if (note) note.textContent = "";
-                  }, 400);
-                }, 1000);
-              }
-              function fallback() {
-                var area = document.createElement("textarea");
-                area.value = email;
-                area.setAttribute("readonly", "");
-                area.style.position = "fixed";
-                area.style.left = "-9999px";
-                document.body.appendChild(area);
-                area.select();
-                try { document.execCommand("copy"); } catch (e) {}
-                area.remove();
-                mark();
+                showCopied(slot, button);
               }
               if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(email).then(mark).catch(fallback);
-              } else {
-                fallback();
+                navigator.clipboard.writeText(email).then(mark).catch(function () {
+                  if (legacyOk) mark();
+                });
+              } else if (legacyOk) {
+                mark();
               }
+            });
+            document.addEventListener("change", function (event) {
+              var toggle = event.target;
+              if (!toggle || toggle.id !== "mobile-contact-toggle" || toggle.checked) return;
+              cancelMobileAuto(document.querySelector(".mobile-contact"));
             });
           })();
         `}</Script>

@@ -109,21 +109,23 @@ function MobileContact() {
           <Mail size={16} strokeWidth={1.75} aria-hidden="true" />
           <span className="sr-only">Contact</span>
         </label>
+        <a
+          href={LINKEDIN_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn profile"
+          className={`mobile-linkedin flex items-center justify-center rounded-full ${liquidGlass}`}
+        >
+          <span className="mobile-linkedin-bounce">
+            <LinkedinIcon />
+          </span>
+        </a>
         <div className="mobile-contact-reveal">
           <div className="mobile-contact-clip">
             <div className="mobile-contact-row">
               <button type="button" data-copy-email={EMAIL} aria-label="Copy email address" className="mobile-email">
                 {EMAIL}
               </button>
-              <a
-                href={LINKEDIN_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn profile"
-                className="flex h-9 w-9 shrink-0 items-center justify-center"
-              >
-                <LinkedinIcon />
-              </a>
             </div>
           </div>
         </div>
