@@ -227,7 +227,7 @@ body {
 .mobile-email {
   border: 0;
   background: none;
-  padding: 0 0.75rem 0 0.15rem;
+  padding: 0 0.15rem 0 0.75rem;
   font: inherit;
   font-size: 13px;
   line-height: 1;
