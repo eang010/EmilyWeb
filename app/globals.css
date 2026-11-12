@@ -291,36 +291,53 @@ body {
 }
 
 .tool-marquee {
+  --skill-fade: 4.5rem;
   position: relative;
   margin-top: 1.25rem;
   overflow: hidden;
-  mask-image: linear-gradient(90deg, transparent, var(--foreground) 8%, var(--foreground) 92%, transparent);
+  padding-block: 2px;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 var(--skill-fade),
+    #000 calc(100% - var(--skill-fade)),
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 var(--skill-fade),
+    #000 calc(100% - var(--skill-fade)),
+    transparent
+  );
 }
 
 .tool-track {
   display: flex;
   width: max-content;
-  animation: tool-scroll 90s linear infinite;
+  animation: tool-scroll 42s linear infinite;
 }
 
-.tool-marquee:hover .tool-track,
-.tool-marquee:focus-within .tool-track {
+.tool-marquee:hover .tool-track {
   animation-play-state: paused;
 }
 
 .tool-row {
   display: flex;
   align-items: center;
-  gap: 2.75rem;
-  padding-right: 2.75rem;
+  gap: 0.75rem;
+  padding-right: 0.75rem;
 }
 
-.tool-logo {
-  display: block;
-  height: 1.75rem;
-  width: auto;
-  max-width: 7.5rem;
-  object-fit: contain;
+.skill-label {
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background: #f3f3f3;
+  color: var(--foreground);
+  font-size: 15px;
+  line-height: 1.3;
+  white-space: nowrap;
+  padding: 0.4rem 1rem;
 }
 
 @keyframes tool-scroll {
@@ -452,6 +469,7 @@ body {
   .tool-marquee {
     overflow-x: auto;
     mask-image: none;
+    -webkit-mask-image: none;
   }
 
   .skeleton,

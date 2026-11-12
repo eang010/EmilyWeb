@@ -86,9 +86,6 @@ export default function About() {
               I like spotting everyday frustrations and building things to solve them, whether it&apos;s a quick automation or a full digital experience.
             </p>
             <p className="scroll-reveal">
-              With AI, I can turn those ideas into reality faster than ever.
-            </p>
-            <p className="scroll-reveal">
               I think technology should make life easier,
               <span className="mt-2 block font-medium">and I'm happiest when something I've made gives someone a bit of their time back.</span>
             </p>
@@ -129,7 +126,7 @@ export default function About() {
       </ul>
 
       <div className="scroll-reveal">
-        <h2 className="mt-16 text-[15px] font-medium">Tools</h2>
+        <h2 className="mt-16 text-[15px] font-medium">Skills</h2>
         <ToolsMarquee />
       </div>
 
