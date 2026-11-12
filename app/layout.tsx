@@ -75,19 +75,29 @@ export default function RootLayout({
               if (!root) return;
               window.clearTimeout(root.__autoCloseTimer);
               window.clearTimeout(root.__copiedHoldTimer);
+              window.clearTimeout(root.__emailHideTimer);
+              root.removeAttribute("data-email-hidden");
               restoreEmail(root.querySelector("[data-copy-email]"));
               clearCopiedNote(root);
+            }
+            function hideMobileEmail(root, button) {
+              root.setAttribute("data-email-hidden", "true");
+              root.__emailHideTimer = window.setTimeout(function () {
+                if (root.getAttribute("data-email-hidden") !== "true") return;
+                restoreEmail(button);
+              }, 450);
             }
             function showMobileCopied(root, button) {
               if (!button) return;
               window.clearTimeout(root.__copiedHoldTimer);
+              window.clearTimeout(root.__emailHideTimer);
               clearCopiedNote(root);
               button.textContent = "Copied";
               button.setAttribute("aria-label", "Email copied");
               root.__copiedHoldTimer = window.setTimeout(function () {
                 var toggle = document.getElementById("mobile-contact-toggle");
                 if (!toggle || !toggle.checked) return;
-                restoreEmail(button);
+                hideMobileEmail(root, button);
               }, 1000);
             }
             function showCopied(slot, button) {
@@ -142,6 +152,7 @@ export default function RootLayout({
                 var mailButton = contact && contact.querySelector("[data-copy-email]");
                 var mail = mailButton && mailButton.getAttribute("data-copy-email");
                 if (contact && mailButton && mail) {
+                  contact.removeAttribute("data-email-hidden");
                   restoreEmail(mailButton);
                   var armed = false;
                   function armOnce() {

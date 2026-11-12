@@ -261,6 +261,10 @@ body {
   grid-template-columns: 1fr;
 }
 
+.mobile-contact[data-email-hidden="true"]:has(.email-toggle:checked) .mobile-contact-reveal {
+  grid-template-columns: 0fr;
+}
+
 .mobile-contact-clip {
   overflow: hidden;
   min-width: 0;
