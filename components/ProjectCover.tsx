@@ -28,9 +28,22 @@ function Plate({
   );
 }
 
-export default function ProjectCover({ slug }: { slug: string }) {
+export default function ProjectCover({
+  slug,
+  shape,
+}: {
+  slug: string;
+  shape?: "portrait" | "landscape";
+}) {
+  const frame =
+    shape === "portrait"
+      ? "aspect-[3/4] @min-[56rem]:aspect-auto @min-[56rem]:h-full @min-[56rem]:min-h-0 @min-[56rem]:flex-1"
+      : shape === "landscape"
+        ? "aspect-video @min-[56rem]:aspect-auto @min-[56rem]:h-full @min-[56rem]:min-h-0 @min-[56rem]:flex-1"
+        : "aspect-video";
+
   return (
-    <div className="aspect-video overflow-hidden bg-[#ececec]">
+    <div className={`overflow-hidden bg-[#ececec] ${frame}`}>
       <div className="h-full w-full transition-opacity duration-300 group-hover:opacity-80 group-focus-visible:opacity-80">
         {slug === "merlimuse" && (
           <Plate slug={slug}>
@@ -65,8 +78,10 @@ export default function ProjectCover({ slug }: { slug: string }) {
         )}
         {slug === "bill-splitter" && (
           <Plate slug={slug}>
-            <circle cx="430" cy="210" r="168" fill="none" stroke="#121212" strokeWidth="12" />
-            <path d="M430 210 L430 42 A168 168 0 0 1 578 292 Z" fill="#121212" />
+            <g transform={shape === "portrait" ? "translate(-110 0)" : undefined}>
+              <circle cx="430" cy="210" r="168" fill="none" stroke="#121212" strokeWidth="12" />
+              <path d="M430 210 L430 42 A168 168 0 0 1 578 292 Z" fill="#121212" />
+            </g>
           </Plate>
         )}
         {slug === "save-the-date" && (
